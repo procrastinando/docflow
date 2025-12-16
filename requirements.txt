@@ -1,0 +1,9 @@
+flask
+unstructured[all-docs]
+pdf2image
+pdfminer.six
+pillow
+opencv-python-headless
+markdown
+pandas
+huggingface-hub

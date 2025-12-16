@@ -1,0 +1,11 @@
+services:
+  docflow:
+    image: docflow
+    container_name: docflow
+    ports:
+      - "5000:5000"
+    #cpus: 20
+    #mem_limit: 30g
+    volumes:
+      - /root/docflow:/app
+    restart: unless-stopped

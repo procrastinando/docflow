@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocFlow - RAG Processor</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1>📄 DocFlow</h1>
+            <p>Unstructured Document Processing for RAG</p>
+        </header>
+
+        <!-- MAIN CARD -->
+        <div class="card" id="main-card">
+            
+            <!-- STEP 1: UPLOAD & SETTINGS -->
+            <div id="upload-section">
+                <div class="drop-zone" id="drop-zone">
+                    <span class="icon">📁</span>
+                    <p>Drag & Drop PDF or Click to Browse</p>
+                    <input type="file" id="file-input" hidden>
+                </div>
+                <div id="file-info" class="hidden">Selected: <span id="filename-display"></span></div>
+
+                <!-- SETTINGS -->
+                <div class="settings-panel">
+                    <div class="setting-group">
+                        <label>Strategy</label>
+                        <select id="strategy">
+                            <option value="hi_res">High Res (Slow, Accurate)</option>
+                            <option value="fast">Fast (Text Only, No Tables)</option>
+                        </select>
+                    </div>
+                    <div class="setting-group">
+                        <label>Model</label>
+                        <select id="model">
+                            <option value="yolox">YOLOX (Balanced)</option>
+                            <option value="detectron2_onnx">Detectron2 (Precise)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="infer_tables" checked> Extract Tables</label>
+                    <label><input type="checkbox" id="extract_images" checked> Extract Images</label>
+                </div>
+
+                <button id="process-btn" class="btn-primary" disabled>Start Processing 🚀</button>
+            </div>
+
+            <!-- STEP 2: PROCESSING -->
+            <div id="processing-section" class="hidden">
+                <div class="loader"></div>
+                <h3 id="status-text">Initializing...</h3>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progress-bar" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- STEP 3: SUCCESS -->
+            <div id="success-section" class="hidden">
+                <div class="success-icon">✅</div>
+                <h2>Processing Complete!</h2>
+                <p id="result-filename">quantum_physics_processed.zip</p>
+                <a id="download-link" href="#" class="btn-primary">Download ZIP</a>
+                <button id="reset-btn" class="btn-secondary">Process Another</button>
+            </div>
+        </div>
+
+        <!-- HISTORY -->
+        <div class="history-section">
+            <h3>Recent History</h3>
+            <ul id="history-list">
+                <!-- Items populated by JS -->
+            </ul>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
